@@ -3,21 +3,21 @@ import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
 import { height, width } from "../../modules";
 
 const Day = ({
-  index,
-  selected,
-  disabled,
-  select,
-  selectedStyle,
-  selectedTextStyle,
-  disabledStyle,
-  dayStyle,
-  dayTextStyle,
-  disabledTextStyle,
-  empty,
-}) => {
+               selected,
+               disabled,
+               select,
+               selectedStyle,
+               selectedTextStyle,
+               disabledStyle,
+               dayStyle,
+               dayTextStyle,
+               disabledTextStyle,
+               empty,
+               date,
+             }) => {
   const selectThis = () => {
     if (!disabled) {
-      select(index);
+      select(date);
     }
   };
   const dayStyles = {
@@ -45,25 +45,23 @@ const Day = ({
     ...selectedTextStyle,
   };
   return (
-    <TouchableOpacity key={"day-" + index} onPress={empty ? null : selectThis}>
-      <View style={styles.day}>
-        <View
+    <TouchableOpacity style={styles.dayContainer} key={"day-" + date.unix()} onPress={empty ? null : selectThis}>
+      <View
+        style={{
+          ...dayStyles,
+          ...(selected && selectedStyles),
+          ...(disabled && disabledStyles),
+        }}
+      >
+        <Text
           style={{
-            ...dayStyles,
-            ...(selected && selectedStyles),
-            ...(disabled && disabledStyles),
+            ...dayTextStyles,
+            ...(selected && selectedTextStyles),
+            ...(disabled && disabledTextStyles),
           }}
         >
-          <Text
-            style={{
-              ...dayTextStyles,
-              ...(selected && selectedTextStyles),
-              ...(disabled && disabledTextStyles),
-            }}
-          >
-            {index}
-          </Text>
-        </View>
+          {date.format("D")}
+        </Text>
       </View>
     </TouchableOpacity>
   );
@@ -72,13 +70,20 @@ const Day = ({
 export default Day;
 
 const styles = StyleSheet.create({
-  day: {
-    width: width * 0.09,
+  dayContainer: {
+    flexGrow: 1,
     height: height * 0.065,
     justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+  },
+  day: {
+    flexGrow: 1,
+    alignItems: "center"
   },
   dayText: {
     fontSize: 16,
+    width: 20,
     textAlign: "center",
     color: "black",
   },
