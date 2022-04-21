@@ -1,20 +1,20 @@
 import React from "react";
 import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
-import { height, width } from "../../modules";
+import { height } from "../../modules";
 
 const Day = ({
-               selected,
-               disabled,
-               select,
-               selectedStyle,
-               selectedTextStyle,
-               disabledStyle,
-               dayStyle,
-               dayTextStyle,
-               disabledTextStyle,
-               empty,
-               date,
-             }) => {
+  selected,
+  disabled,
+  select,
+  selectedStyle,
+  selectedTextStyle,
+  disabledStyle,
+  dayStyle,
+  dayTextStyle,
+  disabledTextStyle,
+  empty,
+  date,
+}) => {
   const selectThis = () => {
     if (!disabled) {
       select(date);
@@ -45,7 +45,11 @@ const Day = ({
     ...selectedTextStyle,
   };
   return (
-    <TouchableOpacity style={styles.dayContainer} key={"day-" + date.unix()} onPress={empty ? null : selectThis}>
+    <TouchableOpacity
+      style={styles.dayContainer}
+      key={"day-" + date.unix()}
+      onPress={empty ? null : selectThis}
+    >
       <View
         style={{
           ...dayStyles,
@@ -79,7 +83,7 @@ const styles = StyleSheet.create({
   },
   day: {
     flexGrow: 1,
-    alignItems: "center"
+    alignItems: "center",
   },
   dayText: {
     fontSize: 16,
