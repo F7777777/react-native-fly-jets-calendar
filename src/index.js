@@ -434,7 +434,11 @@ const DateRangePicker = ({
             />
           )}
         </TouchableOpacity>
-        <Text style={mergedStyles.headerText}>
+        <Text
+          style={mergedStyles.headerText}
+          ellipsizeMode="tail"
+          numberOfLines={1}
+        >
           {displayedDate.format("MMMM")}
         </Text>
         <TouchableOpacity
@@ -521,12 +525,10 @@ DateRangePicker.propTypes = {
 const styles = StyleSheet.create({
   backdrop: {
     backgroundColor: "rgba(0,0,0,0.6)",
-    // position: "absolute",
     width: width,
     height: height,
     justifyContent: "center",
     alignItems: "center",
-    // zIndex: 2147483647,
   },
   container: {
     backgroundColor: "white",
@@ -543,7 +545,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     alignItems: "center",
     paddingLeft: 20,
     paddingRight: 20,
@@ -556,9 +558,11 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   headerText: {
-    flexBasis: "auto",
     fontSize: 16,
     color: "black",
+    flexBasis: 50,
+    flexGrow: 1,
+    textAlign: "center",
   },
   monthButtons: {
     fontSize: 16,
@@ -596,6 +600,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 0,
   },
   monthButtonContainer: {
-    flexBasis: 100,
+    flexGrow: 1,
+    flexBasis: 50,
   },
 });
