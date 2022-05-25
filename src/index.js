@@ -556,6 +556,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 20,
     width: "100%",
+    minHeight: 400,
   },
   headerText: {
     fontSize: 16,
